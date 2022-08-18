@@ -354,3 +354,6 @@ MigrationBackup/
 
 # Sqlite DB files
 *.sqlite
+
+# VS Code
+.vscode
