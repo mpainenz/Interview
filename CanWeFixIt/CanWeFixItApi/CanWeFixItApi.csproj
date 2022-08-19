@@ -6,7 +6,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+        <ProjectReference Include="..\CanWeFixItService\CanWeFixItService.csproj" Version="0.1.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />        
     </ItemGroup>
 
 </Project>
