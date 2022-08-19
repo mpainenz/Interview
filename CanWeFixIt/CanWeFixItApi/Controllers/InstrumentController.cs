@@ -2,6 +2,9 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
+// Internal
+using CanWeFixItService;
+
 namespace CanWeFixItApi.Controllers
 {
     [ApiController]

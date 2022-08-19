@@ -5,6 +5,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 
+// Internal
+using CanWeFixItService;
+
 namespace CanWeFixItApi
 {
     public class Startup
