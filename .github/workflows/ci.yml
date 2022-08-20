@@ -21,11 +21,14 @@ jobs:
       with:
         dotnet-version: ${{ env.DOTNET_VERSION }}
     - name: Install dependencies
-      run: dotnet restore CanWeFixIt/CanWeFixIt.sln
-      run: dotnet restore YesWeCan/YesWeCan.sln
+      run: |
+        dotnet restore CanWeFixIt/CanWeFixIt.sln
+        dotnet restore YesWeCan/YesWeCan.sln
     - name: Build
-      run: dotnet build --configuration Release --no-restore CanWeFixIt/CanWeFixIt.sln
-      run: dotnet build --configuration Release --no-restore YesWeCan/YesWeCan.sln
+      run: |
+        dotnet build --configuration Release --no-restore CanWeFixIt/CanWeFixIt.sln
+        dotnet build --configuration Release --no-restore YesWeCan/YesWeCan.sln
     - name: Test
-      run: cd CanWeFixIt
-      run: dotnet test --no-restore --verbosity normal
+      run: |
+        cd CanWeFixIt
+        dotnet test --no-restore --verbosity normal
