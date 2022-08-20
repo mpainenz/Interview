@@ -1,4 +1,14 @@
 # AlphaCert Technical Screening
+
+[![build and test](https://github.com/mpainenz/Interview/actions/workflows/ci.yml/badge.svg)](https://github.com/mpainenz/Interview/actions/workflows/ci.yml)
+
+## Features and Changes
+
+* CI pipeline for building and testing via [github actions](https://github.com/mpainenz/Interview/actions)
+* Unit testing against `CanWeFixItService` project
+* Integration testing against `CanWeFixItAPI` project
+* Semantic versioning
+
 # Candidate
 
 ## Overview
