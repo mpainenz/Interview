@@ -33,7 +33,7 @@ jobs:
         cd CanWeFixIt
         dotnet test --no-restore --verbosity normal /p:CollectCoverage=true /p:CoverletOutput=TestResults/ /p:CoverletOutputFormat=lcov
         ls
-        cd test
+        cd tests
         ls
 
     # - name: Publish coverage report to coveralls.io   
