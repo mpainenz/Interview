@@ -1,11 +1,12 @@
 # AlphaCert Technical Screening
 
-[![build and test](https://github.com/mpainenz/Interview/actions/workflows/ci.yml/badge.svg)](https://github.com/mpainenz/Interview/actions/workflows/ci.yml)
+Automated CI Status: [![build and test](https://github.com/mpainenz/Interview/actions/workflows/ci.yml/badge.svg)](https://github.com/mpainenz/Interview/actions/workflows/ci.yml)
 
-## Features and Changes
+## Features, Changes, and design considerations
 
 * CI pipeline for building and testing via [github actions](https://github.com/mpainenz/Interview/actions)
 * Unit testing against `CanWeFixItService` project
+* Class fixture for Unit testing to improve performance
 * Integration testing against `CanWeFixItAPI` project
 * Semantic versioning
 
