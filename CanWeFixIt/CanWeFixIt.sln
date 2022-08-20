@@ -1,8 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CanWeFixItApi", "CanWeFixItApi\CanWeFixItApi.csproj", "{F5BE51F2-A6FD-4147-824E-7A2E3DD6984D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CanWeFixItApi", "src\CanWeFixItApi\CanWeFixItApi.csproj", "{F5BE51F2-A6FD-4147-824E-7A2E3DD6984D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CanWeFixItService", "CanWeFixItService\CanWeFixItService.csproj", "{BB862D26-613C-4D09-A150-92F1D82AA77F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CanWeFixItService", "src\CanWeFixItService\CanWeFixItService.csproj", "{BB862D26-613C-4D09-A150-92F1D82AA77F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
