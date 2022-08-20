@@ -32,9 +32,9 @@ jobs:
       run: |
         cd CanWeFixIt
         dotnet test --no-restore --verbosity normal /p:CollectCoverage=true /p:CoverletOutput=TestResults/ /p:CoverletOutputFormat=lcov
-
     - name: Debug
       run: |
+        cd CanWeFixIt
         cd tests
         ls CanWeFixItApi.IntegrationTests
         ls CanWeFixItService.Tests
