@@ -32,9 +32,12 @@ jobs:
       run: |
         cd CanWeFixIt
         dotnet test --no-restore --verbosity normal /p:CollectCoverage=true /p:CoverletOutput=TestResults/ /p:CoverletOutputFormat=lcov
-        ls
+
+    - name: Debug
+      run: |
         cd tests
-        ls
+        ls CanWeFixItApi.IntegrationTests
+        ls CanWeFixItService.Tests
 
     # - name: Publish coverage report to coveralls.io   
     #   uses: coverallsapp/github-action@master   
