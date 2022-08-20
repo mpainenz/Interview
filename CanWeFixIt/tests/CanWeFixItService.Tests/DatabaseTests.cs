@@ -5,19 +5,31 @@ using System;
 namespace CanWeFixItService.Tests
 {
 
-    public class DatabaseTests : IDisposable
+    public class DatabaseFixture : IDisposable
     {
 
-        private DatabaseService _databaseService;
+        public DatabaseService DBService;
 
-        public DatabaseTests()
+        public DatabaseFixture()
         {
-            _databaseService = new DatabaseService();
+            DBService = new DatabaseService();
+            DBService.SetupDatabase();
         }
 
         public void Dispose()
         {
-            // _databaseService.Dispose();
+            // Clean up
+        }
+
+    }
+
+    public class DatabaseTests : IClassFixture<DatabaseFixture>
+    {
+        private DatabaseFixture _dbFixture;
+
+        public DatabaseTests(DatabaseFixture dbFixture)
+        {
+            this._dbFixture = dbFixture;
         }
 
         [Fact]
@@ -26,7 +38,7 @@ namespace CanWeFixItService.Tests
             // Arrange
 
             // Act
-            var instruments = await _databaseService.Instruments();
+            var instruments = await this._dbFixture.DBService.Instruments();
 
             // Assert
             Assert.NotEmpty(instruments);
@@ -38,7 +50,7 @@ namespace CanWeFixItService.Tests
             // Arrange
 
             // Act
-            var marketData = await _databaseService.MarketData();
+            var marketData = await this._dbFixture.DBService.MarketData();
 
             // Assert
             Assert.NotEmpty(marketData);
