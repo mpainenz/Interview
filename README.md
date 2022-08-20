@@ -1,6 +1,6 @@
 # AlphaCert Technical Screening
 
-CI Status: [![build and test](https://github.com/mpainenz/Interview/actions/workflows/ci.yml/badge.svg)](https://github.com/mpainenz/Interview/actions/workflows/ci.yml)
+CI Status: [![Integration & Unit Tests](https://github.com/mpainenz/Interview/actions/workflows/ci.yml/badge.svg)](https://github.com/mpainenz/Interview/actions/workflows/ci.yml)
 
 ## Features, Changes, and design considerations
 
