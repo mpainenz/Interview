@@ -6,19 +6,49 @@ CI Status: [![Integration & Unit Tests](https://github.com/mpainenz/Interview/ac
 
 CI:
 
-* CI pipeline for building and testing via [github actions](https://github.com/mpainenz/Interview/actions)
-* Cross platform test coverage (Ubuntu, Windows, MacOS)
+* Automated CI pipeline on Push for building and testing via [github actions](https://github.com/mpainenz/Interview/actions)
+  - Cross platform test build coverage (Ubuntu, Windows, MacOS)
+  - Automated test coverage reporting during CI via [Coverlet](https://dotnetfoundation.org/projects/coverlet) and [Coveralls](https://coveralls.io/)
 
 Testing:
 
-* Unit testing against `CanWeFixItService` project
-* Class fixture for Unit testing to improve performance (single shared instance of DatabaseService shared for all tests)
-* Integration testing against `CanWeFixItAPI` project
+* Unit testing against `CanWeFixItService` service layer project
+  - Class fixture for Unit testing to improve performance (single shared instance of DatabaseService for all tests)
+* Integration testing against `CanWeFixItAPI` project 
+  - Full coverage of REST API, including edge cases (404, or unknown http method types)
 
-Structure:
+Project Structure and Design:
 
-* Semantic versioning betwen projects
-* Refactor project directory structure (could potentially merge service into api)
+* Semantic versioning of projects and project references
+* Refactor api project directory structure to typical MVC layout, with src/test root directories
+* API versioning, Separate V1 / V2 Controllers, and updated Swagger documentation with groupings
+
+
+Other features:
+
+* Disabled stack traces/exception info for production HTTP error responses
+
+## Issues:
+
+* In-Memory SQLLite Database may not be thread safe for concurrent reads
+
+## Considerations:
+
+* Database functions return potentially large datasets in current implementation
+  - Consider implementing pagination/filtering/row count limitations for large datasets
+  - Consider implementing caching for large datasets
+* In-memory Database is transient
+  - Consider implementing persistent database for production
+  - Consider implementing in-memory caching for production
+* A service such as Sentry could be used to capture Exception reports, and usage analytics
+
+
+
+TODO - Swagger hosted via pages
+TODO - Pic of layout
+TODO - Pic of Coverage
+
+
 
 # Candidate
 
