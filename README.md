@@ -35,7 +35,7 @@ TODO - Pic of Coverage
   - Added SemaphoreSlim to prevent multiple threads from accessing the database at the same time.
   - Built unit test to performance test this issue, and found that without SemaphoreSlim, the program would crash with <1000 concurrent tasks. With SemaphoreSlim, the program runs without crashing with 1 million (and beyond) tasks.
 
-{
+```
         [Theory]
         [InlineData(1000)] // Crashes without semaphore
         [InlineData(1000000)]
@@ -63,7 +63,7 @@ TODO - Pic of Coverage
                 _semaphore.Release();
             }
         }
-}
+```
 
 ## Other features:
 
