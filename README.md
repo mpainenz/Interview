@@ -1,16 +1,12 @@
 # AlphaCert Technical Screening
 
-[![Integration & Unit Tests](https://github.com/mpainenz/Interview/actions/workflows/ci.yml/badge.svg)](https://github.com/mpainenz/Interview/actions/workflows/ci.yml)[![Coverage Status](https://coveralls.io/repos/github/mpainenz/Interview/badge.svg?branch=main)](https://coveralls.io/github/mpainenz/Interview?branch=main)
-
-## Features, Changes, and design considerations
-
-### Continuous Integration:
+## Continuous Integration:
 
 * Automated CI pipeline on Push for building and testing via [github actions](https://github.com/mpainenz/Interview/actions)
-  - Cross platform test build coverage (Ubuntu, Windows, MacOS)
-  - Automated test coverage reporting during CI via [Coverlet](https://dotnetfoundation.org/projects/coverlet) and [Coveralls](https://coveralls.io/)
+  - Cross platform test build coverage (Ubuntu, Windows, MacOS) [![Integration & Unit Tests](https://github.com/mpainenz/Interview/actions/workflows/ci.yml/badge.svg)](https://github.com/mpainenz/Interview/actions/workflows/ci.yml)
+  - Automated test coverage reporting during CI via [Coverlet](https://dotnetfoundation.org/projects/coverlet) and [Coveralls](https://coveralls.io/) [![Coverage Status](https://coveralls.io/repos/github/mpainenz/Interview/badge.svg?branch=main)](https://coveralls.io/github/mpainenz/Interview?branch=main)
 
-### Testing:
+## Testing:
 
 * Unit testing against `CanWeFixItService` service layer project
   - Class fixture for Unit testing to improve performance (single shared instance of DatabaseService for all tests)
@@ -18,14 +14,14 @@
 * Integration testing against `CanWeFixItAPI` project 
   - Full coverage of REST API, including edge cases (404, or unknown http method types)
 
-### Project Structure and Design:
+## Project Structure and Design:
 
 * Semantic versioning of projects and project references
 * Refactor api project directory structure to typical MVC layout, with src/test root directories
 * API versioning, Separate V1 / V2 Controllers, and updated Swagger documentation with groupings
 
 
-Other features:
+## Other features:
 
 * Disabled stack traces/exception info for production HTTP error responses
 
