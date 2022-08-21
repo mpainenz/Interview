@@ -5,8 +5,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 
-// Internal
 using CanWeFixItService;
+using CanWeFixItApi.Areas.Instruments.Data;
+using CanWeFixItApi.Areas.MarketData.Data;
+using CanWeFixItApi.GroupingConvention;
 
 namespace CanWeFixItApi
 {
@@ -22,12 +24,28 @@ namespace CanWeFixItApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllers(options =>
+            {
+                options.Conventions.Add(new GroupingByNamespaceConvention()); // Used to group in Swagger-ui
+            });
+
+            services.AddApiVersioning(o => {
+                o.ReportApiVersions = true;
+            });
+
+            services.AddVersionedApiExplorer(o =>
+            {
+                o.SubstituteApiVersionInUrl = true;
+            });
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "CanWeFixItApi", Version = "v1" });
+                c.SwaggerDoc("v2", new OpenApiInfo { Title = "CanWeFixItApi", Version = "v2" });
             });
             services.AddSingleton<IDatabaseService, DatabaseService>();
+            services.AddTransient<IInstrumentDataProvider, InstrumentDataProvider>();
+            services.AddTransient<IMarketDataDataProvider, MarketDataDataProvider>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -37,13 +55,18 @@ namespace CanWeFixItApi
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "CanWeFixItApi v1"));
+                app.UseSwaggerUI(c => 
+                {
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "CanWeFixItApi v1");
+                    c.SwaggerEndpoint("/swagger/v2/swagger.json", "CanWeFixItApi v2");
+                }
+                );
             }
 
             // Populate in-memory database with data
             var database = app.ApplicationServices.GetService(typeof(IDatabaseService)) as IDatabaseService;
             database?.SetupDatabase();
-            
+
             app.UseHttpsRedirection();
             app.UseRouting();
             app.UseAuthorization();

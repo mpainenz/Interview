@@ -6,7 +6,8 @@ CI Status: [![Integration & Unit Tests](https://github.com/mpainenz/Interview/ac
 
 CI:
 
-* CI pipeline for building and cross-platform testing via [github actions](https://github.com/mpainenz/Interview/actions)
+* CI pipeline for building and testing via [github actions](https://github.com/mpainenz/Interview/actions)
+* Cross platform test coverage (Ubuntu, Windows, MacOS)
 
 Testing:
 
