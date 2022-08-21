@@ -38,8 +38,18 @@ jobs:
         cd tests
         ls CanWeFixItApi.IntegrationTests
         ls CanWeFixItService.Tests
-    - name: Publish coverage report to coveralls.io   
+    - name: Publish unit test coverage report to coveralls.io   
       uses: coverallsapp/github-action@master   
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }} 
-        path-to-lcov: CanWeFixIt/tests/CanWeFixItApi.IntegrationTests/TestResults/coverage.info 
+        path-to-lcov: CanWeFixIt/tests/CanWeFixItApi.Tests/TestResults/coverage.info 
+        parallel: true
+        flag-name: Unit
+    - name: Publish integration test coverage report to coveralls.io   
+      uses: coverallsapp/github-action@master   
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }} 
+        path-to-lcov: CanWeFixIt/tests/CanWeFixItApi.IntegrationTests/TestResults/coverage.info         
+        parallel: true
+        parallel-finished: true
+        flag-name: Integration
