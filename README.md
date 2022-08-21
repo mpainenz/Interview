@@ -1,10 +1,17 @@
 # AlphaCert Technical Screening
 
+| CI      | Status |
+| ----------- | ----------- |
+| Latest Commit      | [![Integration & Unit Tests](https://github.com/mpainenz/Interview/actions/workflows/ci.yml/badge.svg)](https://github.com/mpainenz/Interview/actions/workflows/ci.yml)       |
+| Test coverage   | [![Coverage Status](https://coveralls.io/repos/github/mpainenz/Interview/badge.svg?branch=main)](https://coveralls.io/github/mpainenz/Interview?branch=main)        |
+
+
+
 ## Continuous Integration:
 
 * Automated CI pipeline on Push for building and testing via [github actions](https://github.com/mpainenz/Interview/actions)
-  - Cross platform test build coverage (Ubuntu, Windows, MacOS) [![Integration & Unit Tests](https://github.com/mpainenz/Interview/actions/workflows/ci.yml/badge.svg)](https://github.com/mpainenz/Interview/actions/workflows/ci.yml)
-  - Automated test coverage reporting during CI via [Coverlet](https://dotnetfoundation.org/projects/coverlet) and [Coveralls](https://coveralls.io/) [![Coverage Status](https://coveralls.io/repos/github/mpainenz/Interview/badge.svg?branch=main)](https://coveralls.io/github/mpainenz/Interview?branch=main)
+  - Cross platform test build coverage (Ubuntu, Windows, MacOS)
+  - Automated test coverage reporting during CI via [Coverlet](https://dotnetfoundation.org/projects/coverlet) and [Coveralls](https://coveralls.io/) 
 
 ## Testing:
 
