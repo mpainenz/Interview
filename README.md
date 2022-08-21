@@ -33,7 +33,7 @@ TODO - Pic of Coverage
 
 * In-Memory SQLLite Database is not thread safe, and encounters an exception when multiple threads are accessing the database at the same time.
   - Added SemaphoreSlim to prevent multiple threads from accessing the database at the same time.
-  - Built unit test to performance test this issue, and found that without SemaphoreSlim, the program would crash with <1000 concurrent tasks. With SemaphoreSlim, the program runs without crashing with 1 million (and beyond) tasks.
+  - The program would crash with <1000 concurrent tasks. With SemaphoreSlim, the program runs without crashing with 1 million (and beyond) tasks.
 
 ```
         [Theory]
