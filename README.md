@@ -1,17 +1,19 @@
 # AlphaCert Technical Screening
 
-| CI      | Status |
-| ----------- | ----------- |
-| Latest Commit      | [![Integration & Unit Tests](https://github.com/mpainenz/Interview/actions/workflows/ci.yml/badge.svg)](https://github.com/mpainenz/Interview/actions/workflows/ci.yml)       |
-| Test coverage   | [![Coverage Status](https://coveralls.io/repos/github/mpainenz/Interview/badge.svg?branch=main)](https://coveralls.io/github/mpainenz/Interview?branch=main)        |
-
-
-
 ## Continuous Integration:
 
-* Automated CI pipeline on Push for building and testing via [github actions](https://github.com/mpainenz/Interview/actions)
+| Report      | Status |
+| ----------- | ----------- |
+| Latest Build      | [![Integration & Unit Tests](https://github.com/mpainenz/Interview/actions/workflows/ci.yml/badge.svg)](https://github.com/mpainenz/Interview/actions/workflows/ci.yml)       |
+| Test coverage  | [![Coverage Status](https://coveralls.io/repos/github/mpainenz/Interview/badge.svg?branch=main)](https://coveralls.io/github/mpainenz/Interview?branch=main)        |
+
+* Automated build and test CI pipeline via [github actions](https://github.com/mpainenz/Interview/actions)
   - Cross platform test build coverage (Ubuntu, Windows, MacOS)
-  - Automated test coverage reporting during CI via [Coverlet](https://dotnetfoundation.org/projects/coverlet) and [Coveralls](https://coveralls.io/) 
+
+* Automated test coverage reporting during CI via [Coverlet](https://dotnetfoundation.org/projects/coverlet) and [Coveralls](https://coveralls.io/)
+  - Combined coverage report based on combined Unit and Integration test coverage reports
+
+TODO - Pic of Coverage
 
 ## Testing:
 
@@ -27,17 +29,50 @@
 * Refactor api project directory structure to typical MVC layout, with src/test root directories
 * API versioning, Separate V1 / V2 Controllers, and updated Swagger documentation with groupings
 
+## Bug fixes:
+
+* In-Memory SQLLite Database is not thread safe, and encounters an exception when multiple threads are accessing the database at the same time.
+  - Added SemaphoreSlim to prevent multiple threads from accessing the database at the same time.
+  - Built unit test to performance test this issue, and found that without SemaphoreSlim, the program would crash with <1000 concurrent tasks. With SemaphoreSlim, the program runs without crashing with 1 million (and beyond) tasks.
+
+{
+        [Theory]
+        [InlineData(1000)] // Crashes without semaphore
+        [InlineData(1000000)]
+        public async Task TestParrelelConnections(int taskCount)
+        {
+            var tasks = new Task[taskCount];
+            for (int i = 0; i < taskCount; i++)
+            {
+                tasks[i] = Task.Run(async () => 
+                {
+                    await this._dbFixture.DBService.Instruments();
+                }
+                );
+            }
+            await Task.WhenAll(tasks);
+        }
+
+        //Example usage
+        public async Task<IEnumerable<Instrument>> Instruments()
+        {
+            await _semaphore.WaitAsync();
+            try {
+                return await _connection.QueryAsync<Instrument>("SELECT * FROM instrument WHERE Active = 0");
+            } finally {
+                _semaphore.Release();
+            }
+        }
+}
 
 ## Other features:
 
 * Disabled stack traces/exception info for production HTTP error responses
 
-## Issues:
+
+## Other Considerations:
 
 * In-Memory SQLLite Database may not be thread safe for concurrent reads
-
-## Considerations:
-
 * Database functions return potentially large datasets in current implementation
   - Consider implementing pagination/filtering/row count limitations for large datasets
   - Consider implementing caching for large datasets
@@ -51,8 +86,10 @@
 
 
 TODO - Swagger hosted via pages
+
 TODO - Pic of layout
-TODO - Pic of Coverage
+
+
 
 
 

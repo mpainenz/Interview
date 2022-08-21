@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Threading;
 using Dapper;
 using Microsoft.Data.Sqlite;
 
@@ -15,6 +16,7 @@ namespace CanWeFixItService
         // in-memory database
         
         private SqliteConnection _connection;
+        private SemaphoreSlim _semaphore = new SemaphoreSlim(1);
 
         public DatabaseService()
         {
@@ -22,22 +24,32 @@ namespace CanWeFixItService
             // its lifetime, keep one open connection around for as long as you need it.
 
             // Note, that because the Integration Testing spins up concurrent, parrelell tests and each has it's own connection, it's not possible to share the same in-memory database between tests.
-
             var dataSourceGuid = Guid.NewGuid().ToString();
             var connectionString = $"Data Source=DatabaseService-{dataSourceGuid};Mode=Memory;Cache=Shared";
 
             _connection = new SqliteConnection(connectionString);
             _connection.Open();
+        
         }
         
         public async Task<IEnumerable<Instrument>> Instruments()
         {
-            return await _connection.QueryAsync<Instrument>("SELECT * FROM instrument WHERE Active = 0");
+            await _semaphore.WaitAsync();
+            try {
+                return await _connection.QueryAsync<Instrument>("SELECT * FROM instrument WHERE Active = 0");
+            } finally {
+                _semaphore.Release();
+            }
         }
 
         public async Task<IEnumerable<MarketData>> MarketData()
         {
-            return await _connection.QueryAsync<MarketData>("SELECT Id, DataValue FROM marketdata WHERE Active = 0");
+            await _semaphore.WaitAsync();
+            try {
+                return await _connection.QueryAsync<MarketData>("SELECT Id, DataValue FROM marketdata WHERE Active = 0");
+            } finally {
+                _semaphore.Release();
+            }
         }
 
         /// <summary>
@@ -76,6 +88,7 @@ namespace CanWeFixItService
                     active    int
                 );
                 INSERT INTO marketdata
+
                 VALUES (1, 1111, 'Sedol1', 0),
                     (2, 2222, 'Sedol2', 1),
                     (3, 3333, 'Sedol3', 0),
