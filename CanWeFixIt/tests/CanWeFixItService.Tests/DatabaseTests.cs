@@ -34,7 +34,7 @@ namespace CanWeFixItService.Tests
 
         [Theory]
         [InlineData(1000)] // Crashes without semaphore
-        [InlineData(1000000)]
+        // [InlineData(1000000)] // Interesting test case, but too slow for day-to-day testing
         public async Task TestParrelelConnections(int taskCount)
         {
             var tasks = new Task[taskCount];
@@ -49,7 +49,7 @@ namespace CanWeFixItService.Tests
             await Task.WhenAll(tasks);
         }
 
-
+        # region Instruments
         [Fact]
         public async Task withInstuments_ShouldReturnItems()
         {
@@ -63,6 +63,23 @@ namespace CanWeFixItService.Tests
         }
 
         [Fact]
+        public async Task withInstuments_ShouldReturnOnlyActiveItems()
+        {
+            // Arrange
+
+            // Act
+            var instruments = await this._dbFixture.DBService.Instruments();
+
+            // Assert
+            foreach (var instrument in instruments)
+            {
+                Assert.True(instrument.Active);
+            }
+        }
+        #endregion
+
+        # region MarketData
+        [Fact]
         public async Task withMarketData_ShouldReturnItems()
         {
             // Arrange
@@ -73,6 +90,22 @@ namespace CanWeFixItService.Tests
             // Assert
             Assert.NotEmpty(marketData);
         }
+
+        [Fact]
+        public async Task withMarketData_ShouldReturnOnlyActiveItems()
+        {
+            // Arrange
+
+            // Act
+            var marketData = await this._dbFixture.DBService.MarketData();
+
+            // Assert
+            foreach (var md in marketData)
+            {
+                Assert.True(md.Active);
+            }
+        }
+        #endregion
 
 
     }
