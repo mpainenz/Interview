@@ -17,8 +17,6 @@
 * Automated test coverage reporting during CI via [Coverlet](https://dotnetfoundation.org/projects/coverlet) and [Coveralls](https://coveralls.io/)
   - Combined coverage report based on combined Unit and Integration test coverage reports
 
-<img src="coveralls.png" width="500"/>
-
 ## Testing
 
 * Unit testing against `CanWeFixItService` service layer project
@@ -26,6 +24,12 @@
 
 * Integration testing against `CanWeFixItAPI` project
   - Full coverage of REST API, including edge cases (404, or unknown http method types)
+
+### Coverage reporting
+
+<a href="https://coveralls.io/github/mpainenz/Interview"><img src="coveralls.png" width="400"/><a>
+
+View test coverage reporting at [https://coveralls.io/github/mpainenz/Interview](https://coveralls.io/github/mpainenz/Interview)
 
 ## Project Structure and Design
 
