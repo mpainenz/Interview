@@ -1,13 +1,7 @@
 ﻿using System;
-using System.IO;
-using System.Text;
-using System.Threading.Tasks;
 using System.Net.Http;
-using System.Collections.Generic;
 
 using Microsoft.AspNetCore.Mvc.Testing;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Configuration;
 
 using Xunit;
 

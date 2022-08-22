@@ -1,5 +1,3 @@
-using Dapper.Contrib.Extensions;
-
 namespace CanWeFixItService
 {
     // public class MarketData
