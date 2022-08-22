@@ -11,10 +11,10 @@ namespace CanWeFixItService
     {
         // See SQLite In-Memory example:
         // https://github.com/dotnet/docs/blob/main/samples/snippets/standard/data/sqlite/InMemorySample/Program.cs
-        
+
         // Using a name and a shared cache allows multiple connections to access the same
         // in-memory database
-        
+
         private SqliteConnection _connection;
         private SemaphoreSlim _semaphore = new SemaphoreSlim(1);
 
@@ -29,15 +29,18 @@ namespace CanWeFixItService
 
             _connection = new SqliteConnection(connectionString);
             _connection.Open();
-        
+
         }
-        
+
         public async Task<IEnumerable<Instrument>> Instruments()
         {
             await _semaphore.WaitAsync();
-            try {
+            try
+            {
                 return await _connection.QueryAsync<Instrument>("SELECT Id, Sedol, Name, Active FROM instrument WHERE Active = 0");
-            } finally {
+            }
+            finally
+            {
                 _semaphore.Release();
             }
         }
@@ -45,9 +48,12 @@ namespace CanWeFixItService
         public async Task<IEnumerable<MarketData>> MarketData()
         {
             await _semaphore.WaitAsync();
-            try {
+            try
+            {
                 return await _connection.QueryAsync<MarketData>("SELECT Id, DataValue, Sedol, Active FROM marketdata WHERE Active = 0");
-            } finally {
+            }
+            finally
+            {
                 _semaphore.Release();
             }
         }
@@ -78,7 +84,7 @@ namespace CanWeFixItService
                     (9, 'Sedol9', 'Name9', 0)";
 
             _connection.Execute(createInstruments);
-            
+
             const string createMarketData = @"
                 CREATE TABLE marketdata
                 (
