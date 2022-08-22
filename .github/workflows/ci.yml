@@ -49,8 +49,7 @@ jobs:
         uses: coverallsapp/github-action@master   
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }} 
-          path-to-lcov: CanWeFixIt/tests/CanWeFixItService.Tests/TestResults/coverage.info 
-          parallel: true
+          path-to-lcov: CanWeFixIt/tests/CanWeFixItService.Tests/TestResults/coverage.info
           flag-name: Unit
 
       - name: Publish integration test coverage report to coveralls.io   
@@ -58,6 +57,4 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }} 
           path-to-lcov: CanWeFixIt/tests/CanWeFixItApi.IntegrationTests/TestResults/coverage.info         
-          parallel: true
-          parallel-finished: true
           flag-name: Integration

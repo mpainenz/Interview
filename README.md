@@ -7,7 +7,7 @@
 | Latest Build      | [![Integration & Unit Tests](https://github.com/mpainenz/Interview/actions/workflows/ci.yml/badge.svg)](https://github.com/mpainenz/Interview/actions/workflows/ci.yml)       |
 | Linter  | [![GitHub Super-Linter](https://github.com/mpainenz/Interview/workflows/Lint%20Code%20Base/badge.svg)](https://github.com/marketplace/actions/super-linter)
 | Test coverage  | [![Coverage Status](https://coveralls.io/repos/github/mpainenz/Interview/badge.svg?branch=main)](https://coveralls.io/github/mpainenz/Interview?branch=main)        |
- |
+
 
 * Automated build and test CI pipeline via [GitHub actions](https://github.com/mpainenz/Interview/actions)
   - Cross platform test build coverage (Ubuntu, Windows, MacOS)
