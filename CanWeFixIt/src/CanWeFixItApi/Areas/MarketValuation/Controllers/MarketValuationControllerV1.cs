@@ -14,16 +14,16 @@ namespace CanWeFixItApi.Areas.MarketValuation.Controllers.V1
     {
 
         private readonly IMarketValuationDataProvider _dp;
-        
+
         public MarketValuationController(IMarketValuationDataProvider dp)
         {
             _dp = dp;
         }
-        
+
         [HttpGet]
         [MapToApiVersion("1.0")]
         public async Task<ActionResult<IEnumerable<CanWeFixItService.MarketValuation>>> Get()
-        {   
+        {
             var marketValuation = await _dp.GetMarketValuation();
             return Ok(marketValuation);
         }

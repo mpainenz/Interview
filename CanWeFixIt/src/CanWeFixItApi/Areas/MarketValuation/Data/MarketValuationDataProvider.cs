@@ -5,7 +5,7 @@ using CanWeFixItService;
 
 namespace CanWeFixItApi.Areas.MarketValuation.Data
 {
-    public class MarketValuationDataProvider: IMarketValuationDataProvider
+    public class MarketValuationDataProvider : IMarketValuationDataProvider
     {
 
         IDatabaseService _db;
