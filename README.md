@@ -95,8 +95,7 @@ TODO - Pic of Coverage
 * A service such as Sentry could be used to capture Exception reports, and usage analytics
 * Documentation of Swagger API endpoints
 * Add versioning to Models
-* Flesh out unit testing to include more specific tests against known test data
-
+* Flesh out unit testing to include more specific test cases against known test data (mimick test `YesWeCan` project)
 
 
 TODO - Swagger hosted via pages

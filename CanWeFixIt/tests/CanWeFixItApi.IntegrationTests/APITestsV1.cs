@@ -29,6 +29,9 @@ namespace CanWeFixItApi.IntegrationTests.V1
 
         [InlineData("v1/marketdata/", HTTPVerbEnum.GET, System.Net.HttpStatusCode.OK)]
         [InlineData("v1/marketdata/", HTTPVerbEnum.POST, System.Net.HttpStatusCode.MethodNotAllowed)] // Test unexpected http method
+
+        [InlineData("v1/valuations/", HTTPVerbEnum.GET, System.Net.HttpStatusCode.OK)]
+        [InlineData("v1/valuations/", HTTPVerbEnum.POST, System.Net.HttpStatusCode.MethodNotAllowed)] // Test unexpected http method
         
         public async void Test_API_Endpoint_Connectivity(string endpoint, HTTPVerbEnum httpVerb, System.Net.HttpStatusCode expectedStatusCode, HttpContent content = null)
         {

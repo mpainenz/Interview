@@ -62,6 +62,19 @@ namespace CanWeFixItService
             }
         }
 
+        public async Task<IEnumerable<MarketValuation>> MarketValuation()
+        {
+            await _semaphore.WaitAsync();
+            try
+            {
+                return await _connection.QueryAsync<MarketValuation>(@"SELECT ""DataValueTotal"" as Name, sum(datavalue) as Total FROM marketdata where active = 1");
+            }
+            finally
+            {
+                _semaphore.Release();
+            }
+        }
+
         /// <summary>
         /// This is complete and will correctly load the test data.
         /// It is called during app startup 

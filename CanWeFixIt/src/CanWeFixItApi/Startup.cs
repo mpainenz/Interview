@@ -9,6 +9,7 @@ using Microsoft.OpenApi.Models;
 using CanWeFixItService;
 using CanWeFixItApi.Areas.Instruments.Data;
 using CanWeFixItApi.Areas.MarketData.Data;
+using CanWeFixItApi.Areas.MarketValuation.Data;
 using CanWeFixItApi.GroupingConvention;
 
 namespace CanWeFixItApi
@@ -48,6 +49,7 @@ namespace CanWeFixItApi
             services.AddSingleton<IDatabaseService, DatabaseService>();
             services.AddTransient<IInstrumentDataProvider, InstrumentDataProvider>();
             services.AddTransient<IMarketDataDataProvider, MarketDataDataProvider>();
+            services.AddTransient<IMarketValuationDataProvider, MarketValuationDataProvider>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

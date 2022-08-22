@@ -107,6 +107,32 @@ namespace CanWeFixItService.Tests
         }
         #endregion
 
+        # region MarketValuation
+        [Fact]
+        public async Task withMarketValuation_ShouldReturnItems()
+        {
+            // Arrange
+
+            // Act
+            var marketValuation = await this._dbFixture.DBService.MarketValuation();
+
+            // Assert
+            Assert.NotEmpty(marketValuation);
+        }
+
+
+        [Fact]
+        public async Task withMarketValuation_ShouldReturnOnlyOneItem()
+        {
+            // Arrange
+
+            // Act
+            var marketValuation = await this._dbFixture.DBService.MarketValuation();
+
+            // Assert
+            Assert.Single(marketValuation);
+        }
+        #endregion
 
     }
 }
