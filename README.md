@@ -1,23 +1,25 @@
 # AlphaCert Technical Screening
 
-## Continuous Integration:
+## Continuous Integration
 
 | Report      | Status |
 | ----------- | ----------- |
 | Latest Build      | [![Integration & Unit Tests](https://github.com/mpainenz/Interview/actions/workflows/ci.yml/badge.svg)](https://github.com/mpainenz/Interview/actions/workflows/ci.yml)       |
-| Test coverage  | [![Coverage Status](https://coveralls.io/repos/github/mpainenz/Interview/badge.svg?branch=main)](https://coveralls.io/github/mpainenz/Interview?branch=main)        |
 | Linter  | [![GitHub Super-Linter](https://github.com/mpainenz/Interview/workflows/Lint%20Code%20Base/badge.svg)](https://github.com/marketplace/actions/super-linter)
+| Test coverage  | [![Coverage Status](https://coveralls.io/repos/github/mpainenz/Interview/badge.svg?branch=main)](https://coveralls.io/github/mpainenz/Interview?branch=main)        |
  |
 
 * Automated build and test CI pipeline via [github actions](https://github.com/mpainenz/Interview/actions)
   - Cross platform test build coverage (Ubuntu, Windows, MacOS)
+
+* Automated code linting via [github super-linter](https://github.com/github/super-linter#codespaces-and-visual-studio-code)
 
 * Automated test coverage reporting during CI via [Coverlet](https://dotnetfoundation.org/projects/coverlet) and [Coveralls](https://coveralls.io/)
   - Combined coverage report based on combined Unit and Integration test coverage reports
 
 TODO - Pic of Coverage
 
-## Testing:
+## Testing
 
 * Unit testing against `CanWeFixItService` service layer project
   - Class fixture for Unit testing to improve performance (single shared instance of DatabaseService for all tests)
@@ -25,19 +27,19 @@ TODO - Pic of Coverage
 * Integration testing against `CanWeFixItAPI` project 
   - Full coverage of REST API, including edge cases (404, or unknown http method types)
 
-## Project Structure and Design:
+## Project Structure and Design
 
 * Semantic versioning of projects and project references
 * Refactor api project directory structure to typical MVC layout, with src/test root directories
 * API versioning, Separate V1 / V2 Controllers, and updated Swagger documentation with groupings
 
-## Bug fixes:
+## Bug fixes
 
 * In-Memory SQLLite Database is not thread safe, and encounters an exception when multiple threads are accessing the database at the same time.
   - Added SemaphoreSlim to prevent multiple threads from accessing the database at the same time.
   - The program would crash with <1000 concurrent tasks. With SemaphoreSlim, the program runs without crashing with 1 million (and beyond) tasks.
 
-```
+```csharp
         [Theory]
         [InlineData(1000)] // Crashes without semaphore
         [InlineData(1000000)]
@@ -67,12 +69,16 @@ TODO - Pic of Coverage
         }
 ```
 
-## Other features:
+* Fixed missing project references, using statements, and other compile errors
+* Added missing fields returned by SQL querys
+
+
+## Other features
 
 * Disabled stack traces/exception info for production HTTP error responses
 
 
-## Other Considerations:
+## Other Considerations
 
 * Database functions return potentially large datasets in current implementation
   - Consider implementing pagination/filtering/row count limitations for large datasets
@@ -82,7 +88,7 @@ TODO - Pic of Coverage
   - Consider implementing persistent database for production
   - Consider implementing in-memory caching for production
 
-## Hypothetical Improvements:
+## Hypothetical Improvements
 
 * A service such as Sentry could be used to capture Exception reports, and usage analytics
 * Documentation of Swagger API endpoints
@@ -94,10 +100,7 @@ TODO - Swagger hosted via pages
 
 TODO - Pic of layout
 
-
-
-
-
+<!-- 
 # Candidate
 
 ## Overview
@@ -233,4 +236,4 @@ Example:
   }
 ]
 
-``` 
+```  -->
