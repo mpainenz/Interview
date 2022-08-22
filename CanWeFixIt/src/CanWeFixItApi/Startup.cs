@@ -30,7 +30,8 @@ namespace CanWeFixItApi
                 options.Conventions.Add(new GroupingByNamespaceConvention()); // Used to group in Swagger-ui
             });
 
-            services.AddApiVersioning(o => {
+            services.AddApiVersioning(o =>
+            {
                 o.ReportApiVersions = true;
             });
 
@@ -56,14 +57,16 @@ namespace CanWeFixItApi
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => 
+                app.UseSwaggerUI(c =>
                 {
                     c.SwaggerEndpoint("/swagger/v1/swagger.json", "CanWeFixItApi v1");
                     c.SwaggerEndpoint("/swagger/v2/swagger.json", "CanWeFixItApi v2");
                 }
                 );
-            } else {
-                
+            }
+            else
+            {
+
                 // Send generic errors to the client
                 app.UseExceptionHandler(appBuilder =>
                 {
