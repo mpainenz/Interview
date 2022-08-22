@@ -70,7 +70,7 @@ View test coverage reporting at [https://coveralls.io/github/mpainenz/Interview]
         {
             await _semaphore.WaitAsync();
             try {
-                return await _connection.QueryAsync<Instrument>("SELECT * FROM instrument WHERE Active = 0");
+                return await _connection.QueryAsync<Instrument>("SELECT Id, Sedol, Name, Active FROM instrument WHERE Active = 1");
             } finally {
                 _semaphore.Release();
             }
