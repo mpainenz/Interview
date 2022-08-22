@@ -9,10 +9,10 @@
 | Test coverage  | [![Coverage Status](https://coveralls.io/repos/github/mpainenz/Interview/badge.svg?branch=main)](https://coveralls.io/github/mpainenz/Interview?branch=main)        |
  |
 
-* Automated build and test CI pipeline via [github actions](https://github.com/mpainenz/Interview/actions)
+* Automated build and test CI pipeline via [GitHub actions](https://github.com/mpainenz/Interview/actions)
   - Cross platform test build coverage (Ubuntu, Windows, MacOS)
 
-* Automated code linting via [github super-linter](https://github.com/github/super-linter#codespaces-and-visual-studio-code)
+* Automated code linting via [GitHub super-linter](https://github.com/github/super-linter#codespaces-and-visual-studio-code)
 
 * Automated test coverage reporting during CI via [Coverlet](https://dotnetfoundation.org/projects/coverlet) and [Coveralls](https://coveralls.io/)
   - Combined coverage report based on combined Unit and Integration test coverage reports
@@ -24,16 +24,16 @@ TODO - Pic of Coverage
 * Unit testing against `CanWeFixItService` service layer project
   - Class fixture for Unit testing to improve performance (single shared instance of DatabaseService for all tests)
 
-* Integration testing against `CanWeFixItAPI` project 
+* Integration testing against `CanWeFixItAPI` project
   - Full coverage of REST API, including edge cases (404, or unknown http method types)
 
 ## Project Structure and Design
 
 * Semantic versioning of projects and project references
-* Refactor api project directory structure to typical MVC layout, with src/test root directories
+* Refactor API project directory structure to typical MVC layout, with src/test root directories
 * API versioning, Separate V1 / V2 Controllers, and updated Swagger documentation with groupings
 
-## Bug fixes
+## Bugfixes
 
 * In-Memory SQLLite Database is not thread safe, and encounters an exception when multiple threads are accessing the database at the same time.
   - Added SemaphoreSlim to prevent multiple threads from accessing the database at the same time.
@@ -56,8 +56,10 @@ TODO - Pic of Coverage
             }
             await Task.WhenAll(tasks);
         }
+```
 
-        //Example usage
+```csharp
+        //Example semaphore usage
         public async Task<IEnumerable<Instrument>> Instruments()
         {
             await _semaphore.WaitAsync();
