@@ -17,7 +17,7 @@
 * Automated test coverage reporting during CI via [Coverlet](https://dotnetfoundation.org/projects/coverlet) and [Coveralls](https://coveralls.io/)
   - Combined coverage report based on combined Unit and Integration test coverage reports
 
-TODO - Pic of Coverage
+<img src="coveralls.png" width="500"/>
 
 ## Testing
 
