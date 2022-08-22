@@ -72,7 +72,6 @@ TODO - Pic of Coverage
 
 ## Other Considerations:
 
-* In-Memory SQLLite Database may not be thread safe for concurrent reads
 * Database functions return potentially large datasets in current implementation
   - Consider implementing pagination/filtering/row count limitations for large datasets
   - Consider implementing caching for large datasets
@@ -81,7 +80,11 @@ TODO - Pic of Coverage
   - Consider implementing persistent database for production
   - Consider implementing in-memory caching for production
 
+## Hypothetical Improvements:
+
 * A service such as Sentry could be used to capture Exception reports, and usage analytics
+* Documentation of Swagger API endpoints
+* Add versioning to Models
 
 
 
