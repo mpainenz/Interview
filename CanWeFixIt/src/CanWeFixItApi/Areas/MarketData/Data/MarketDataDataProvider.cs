@@ -15,7 +15,7 @@ namespace CanWeFixItApi.Areas.MarketData.Data
             _db = db;
         }
 
-        public async Task<IEnumerable<CanWeFixItService.MarketData>> GetMarketData()
+        public async Task<IEnumerable<CanWeFixItService.MarketDataDto>> GetMarketData()
         {
             return await _db.MarketData();
         }

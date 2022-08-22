@@ -20,7 +20,7 @@ namespace CanWeFixItApi.Areas.MarketData.Controllers.V1
         
         [HttpGet]
         [MapToApiVersion("1.0")]
-        public async Task<ActionResult<IEnumerable<CanWeFixItService.MarketData>>> Get()
+        public async Task<ActionResult<IEnumerable<CanWeFixItService.MarketDataDto>>> Get()
         {   
             var marketData = await _dp.GetMarketData();
             return Ok(marketData);

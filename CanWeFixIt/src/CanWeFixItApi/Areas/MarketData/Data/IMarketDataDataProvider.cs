@@ -7,6 +7,6 @@ namespace CanWeFixItApi.Areas.MarketData.Data
 {
     public interface IMarketDataDataProvider
     {
-        Task<IEnumerable<CanWeFixItService.MarketData>> GetMarketData();
+        Task<IEnumerable<CanWeFixItService.MarketDataDto>> GetMarketData();
     }
 }

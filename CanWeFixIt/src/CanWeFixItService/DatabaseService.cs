@@ -37,7 +37,7 @@ namespace CanWeFixItService
             await _semaphore.WaitAsync();
             try
             {
-                return await _connection.QueryAsync<Instrument>("SELECT Id, Sedol, Name, Active FROM instrument WHERE Active = 0");
+                return await _connection.QueryAsync<Instrument>("SELECT Id, Sedol, Name, Active FROM instrument WHERE Active = 1");
             }
             finally
             {
@@ -45,12 +45,16 @@ namespace CanWeFixItService
             }
         }
 
-        public async Task<IEnumerable<MarketData>> MarketData()
+        public async Task<IEnumerable<MarketDataDto>> MarketData()
         {
             await _semaphore.WaitAsync();
             try
             {
-                return await _connection.QueryAsync<MarketData>("SELECT Id, DataValue, Sedol, Active FROM marketdata WHERE Active = 0");
+                var sql = @"SELECT m.Id, m.DataValue, i.id as InstrumentId, m.Active 
+                    FROM marketdata as m
+                    INNER JOIN instrument as i ON m.sedol = i.sedol
+                    WHERE i.Active = 1 and m.Active = 1";
+                return await _connection.QueryAsync<MarketDataDto>(sql);
             }
             finally
             {
