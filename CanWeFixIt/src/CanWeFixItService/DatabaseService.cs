@@ -36,7 +36,7 @@ namespace CanWeFixItService
         {
             await _semaphore.WaitAsync();
             try {
-                return await _connection.QueryAsync<Instrument>("SELECT * FROM instrument WHERE Active = 0");
+                return await _connection.QueryAsync<Instrument>("SELECT Id, Sedol, Name, Active FROM instrument WHERE Active = 0");
             } finally {
                 _semaphore.Release();
             }
@@ -46,7 +46,7 @@ namespace CanWeFixItService
         {
             await _semaphore.WaitAsync();
             try {
-                return await _connection.QueryAsync<MarketData>("SELECT Id, DataValue FROM marketdata WHERE Active = 0");
+                return await _connection.QueryAsync<MarketData>("SELECT Id, DataValue, Sedol, Active FROM marketdata WHERE Active = 0");
             } finally {
                 _semaphore.Release();
             }
