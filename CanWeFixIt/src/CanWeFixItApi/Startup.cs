@@ -38,7 +38,7 @@ namespace CanWeFixItApi
 
             services.AddVersionedApiExplorer(o =>
             {
-                o.SubstituteApiVersionInUrl = true;
+                o.SubstituteApiVersionInUrl = true; //Used in Swagger to replace {version} with the version number in the URL, e.g. /v1/valuations instead of /v{version}/valuations
             });
 
             services.AddSwaggerGen(c =>

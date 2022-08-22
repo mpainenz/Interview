@@ -10,12 +10,12 @@ using CanWeFixIt.Common;
 namespace CanWeFixItApi.IntegrationTests.V1
 {
 
-    public class APITests : IClassFixture<WebApplicationFactory<CanWeFixItApi.Startup>>
+    public class APITestsV1 : IClassFixture<WebApplicationFactory<CanWeFixItApi.Startup>>
     {
 
         private readonly WebApplicationFactory<CanWeFixItApi.Startup> _factory;
 
-        public APITests(WebApplicationFactory<CanWeFixItApi.Startup> factory)
+        public APITestsV1(WebApplicationFactory<CanWeFixItApi.Startup> factory)
         {
             _factory = factory;
         }
